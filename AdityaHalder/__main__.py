@@ -172,7 +172,7 @@ async def aditya(_, CallbackQuery):
     await CallbackQuery.message.edit(text, reply_markup=keyboard)
 
 
-@client.robot.on_callback_query(filters.regex(r"help_(.*?)") & SUDOERS)
+@client.on_callback_query(filters.regex(r"help_(.*?)") & SUDOERS)
 async def help_button(client, query):
     home_match = re.match(r"help_home\((.+?)\)", query.data)
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
