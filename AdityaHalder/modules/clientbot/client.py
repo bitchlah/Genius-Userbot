@@ -3,7 +3,7 @@
 import random
 import string
 from pyrogram import Client
-from AdityaHalder import bot
+from AdityaHalder import robot
 from AdityaHalder.modules.newpyrogram.dispatcher import Dispatcher
 
 
@@ -34,6 +34,6 @@ class SuperClient(Client):
         self.pic = self.download_media(self.me.photo.big_file_id) if self.me.photo else None
         self.is_bot = False
         self.stop()
-        self.bot = bot()
+        self.bot = robot()
         self.dispatcher = Dispatcher(self)
         self.__class__.__module__ = "pyrogram.client"
