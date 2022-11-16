@@ -4,7 +4,6 @@ import random
 import string
 from pyrogram import Client
 from AdityaHalder import robot
-from AdityaHalder.modules.newpyrogram.dispatcher import Dispatcher
 
 
 
@@ -35,5 +34,3 @@ class SuperClient(Client):
         self.is_bot = False
         self.stop()
         self.bot = robot()
-        self.dispatcher = Dispatcher(self)
-        self.__class__.__module__ = "pyrogram.client"
