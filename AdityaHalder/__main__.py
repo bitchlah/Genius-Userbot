@@ -11,7 +11,7 @@ from rich.table import Table
 from youtubesearchpython import VideosSearch
 
 from AdityaHalder.config import LOG_GROUP_ID, STRING_SESSION
-from AdityaHalder import app, client, robot, pytgcalls, ASSID, ASSNAME, BOT_ID, BOT_NAME, OWNER_ID
+from AdityaHalder import client, robot, pytgcalls, ASSID, ASSNAME, BOT_ID, BOT_NAME, OWNER_ID
 from AdityaHalder.modules.helpers.filters import command
 from AdityaHalder.modules.helpers.decorators import errors, sudo_users_only
 from AdityaHalder.plugins import ALL_MODULES
@@ -139,7 +139,7 @@ Yᴏᴜʀ Oᴡɴ » Gᴇɴɪᴜs Usᴇʀ Bᴏᴛ.
     
     
     
-@app.robot.on_message(command(["help"]) & SUDOERS)
+@client.on_message(command(["help"]) & SUDOERS)
 async def help_command(_, message):
     text, keyboard = await help_parser(message.from_user.mention)
     await robot.send_message(LOG_GROUP_ID, text, reply_markup=keyboard)
@@ -162,17 +162,17 @@ Tᴏ Gᴇᴛ Gᴇɴɪᴜs Cᴏᴍᴍᴀɴᴅs ✨...**
         keyboard,
     )
 
-@app.robot.on_callback_query(filters.regex("close") & SUDOERS)
+@client.on_callback_query(filters.regex("close") & SUDOERS)
 async def close(_, CallbackQuery):
     await CallbackQuery.message.delete()
 
-@app.robot.on_callback_query(filters.regex("aditya") & SUDOERS)
+@client.on_callback_query(filters.regex("aditya") & SUDOERS)
 async def aditya(_, CallbackQuery):
     text, keyboard = await help_parser(CallbackQuery.from_user.mention)
     await CallbackQuery.message.edit(text, reply_markup=keyboard)
 
 
-@app.robot.on_callback_query(filters.regex(r"help_(.*?)") & SUDOERS)
+@client.robot.on_callback_query(filters.regex(r"help_(.*?)") & SUDOERS)
 async def help_button(client, query):
     home_match = re.match(r"help_home\((.+?)\)", query.data)
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
